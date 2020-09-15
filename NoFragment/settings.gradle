@@ -1,0 +1,3 @@
+rootProject.name='NoFragment'
+include ':app'
+include ':fragment'
