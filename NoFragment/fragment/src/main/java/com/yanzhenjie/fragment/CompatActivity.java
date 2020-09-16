@@ -15,6 +15,7 @@
  */
 package com.yanzhenjie.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -47,10 +48,11 @@ public abstract class CompatActivity extends AppCompatActivity {
         }
 
         private boolean isSticky = false;
-        private int requestCode = REQUEST_CODE_INVALID;
+        private int requestCode = REQUEST_CODE_INVALID;//请求码
+        @SuppressLint("WrongConstant")
         @ResultCode
-        int resultCode = RESULT_CANCELED;
-        Bundle result = null;
+        int resultCode = RESULT_CANCELED;//响应码
+        Bundle result = null;//响应的数据包
     }
 
     public final <T extends NoFragment> T fragment(Class<T> fragmentClass) {
@@ -223,22 +225,24 @@ public abstract class CompatActivity extends AppCompatActivity {
     /**
      * When the back off.
      */
+    @SuppressLint("WrongConstant")
     protected final boolean onBackStackFragment() {
         if (mFragmentStack.size() > 1) {
             mFManager.popBackStack();
-            NoFragment inFragment = mFragmentStack.get(mFragmentStack.size() - 2);
+            NoFragment inFragment = mFragmentStack.get(mFragmentStack.size() - 2);//上一个Fragment
 
             FragmentTransaction fragmentTransaction = mFManager.beginTransaction();
             fragmentTransaction.show(inFragment);
             fragmentTransaction.commit();
 
-            NoFragment outFragment = mFragmentStack.get(mFragmentStack.size() - 1);
+            NoFragment outFragment = mFragmentStack.get(mFragmentStack.size() - 1);//最后一个Fragment
             inFragment.onResume();
 
             FragmentStackEntity stackEntity = mFragmentEntityMap.get(outFragment);
             mFragmentStack.remove(outFragment);
             mFragmentEntityMap.remove(outFragment);
 
+            //最后一个Fragment向上一个Fragment回传数据
             if (stackEntity.requestCode != REQUEST_CODE_INVALID) {
                 inFragment.onFragmentResult(stackEntity.requestCode, stackEntity.resultCode, stackEntity.result);
             }
