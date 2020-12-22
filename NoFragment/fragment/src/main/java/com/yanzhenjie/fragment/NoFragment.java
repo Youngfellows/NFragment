@@ -15,6 +15,7 @@
  */
 package com.yanzhenjie.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -156,6 +157,7 @@ public class NoFragment extends Fragment {
      *
      * @param toolbar {@link Toolbar}.
      */
+    @SuppressLint("RestrictedApi")
     public final void setToolbar(@NonNull Toolbar toolbar) {
         this.mToolbar = toolbar;
         onCreateOptionsMenu(mToolbar.getMenu(), new SupportMenuInflater(mActivity));
@@ -264,6 +266,7 @@ public class NoFragment extends Fragment {
      *
      * @param resultCode result code, one of {@link NoFragment#RESULT_OK}, {@link NoFragment#RESULT_CANCELED}.
      */
+    @SuppressLint("WrongConstant")
     protected final void setResult(@ResultCode int resultCode) {
         mStackEntity.resultCode = resultCode;
     }
@@ -274,6 +277,7 @@ public class NoFragment extends Fragment {
      * @param resultCode resultCode, use {@link }.
      * @param result     {@link Bundle}.
      */
+    @SuppressLint("WrongConstant")
     protected final void setResult(@ResultCode int resultCode, @NonNull Bundle result) {
         mStackEntity.resultCode = resultCode;
         mStackEntity.result = result;
@@ -287,12 +291,14 @@ public class NoFragment extends Fragment {
     }
 
     /**
-     * You should override it.
+     * You should override it
      *
-     * @param resultCode resultCode.
-     * @param result     {@link Bundle}.
+     * @param requestCode 请求码
+     * @param resultCode  响应码
+     * @param result      {@link Bundle}.   响应的数据包
      */
     public void onFragmentResult(int requestCode, @ResultCode int resultCode, @Nullable Bundle result) {
+
     }
 
     /**
