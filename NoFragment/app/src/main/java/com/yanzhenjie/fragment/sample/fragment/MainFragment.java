@@ -18,13 +18,17 @@ package com.yanzhenjie.fragment.sample.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.yanzhenjie.alertdialog.AlertDialog;
 import com.yanzhenjie.fragment.NoFragment;
@@ -34,8 +38,8 @@ import com.yanzhenjie.fragment.sample.R;
  * Created by Yan Zhenjie on 2017/1/15.
  */
 public class MainFragment extends NoFragment implements View.OnClickListener {
-
     private Toolbar mToolbar;
+    private FrameLayout mDetailsLayout;
 
     @Nullable
     @Override
@@ -46,10 +50,15 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        mDetailsLayout = view.findViewById(R.id.fl_details);
         view.findViewById(R.id.btn_menu_more).setOnClickListener(this);
         view.findViewById(R.id.btn_argument).setOnClickListener(this);
         view.findViewById(R.id.btn_for_result).setOnClickListener(this);
         view.findViewById(R.id.btn_stack).setOnClickListener(this);
+        view.findViewById(R.id.btn_news).setOnClickListener(this);
+        view.findViewById(R.id.btn_video).setOnClickListener(this);
+        view.findViewById(R.id.btn_weather).setOnClickListener(this);
+        view.findViewById(R.id.btn_music).setOnClickListener(this);
     }
 
     @Override
@@ -96,7 +105,51 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
                 startFragment(StackFragment.class, false);
                 break;
             }
+            case R.id.btn_news: {
+                showDetailsFragment("新闻");
+                break;
+            }
+            case R.id.btn_weather: {
+                showDetailsFragment("天气");
+                break;
+            }
+            case R.id.btn_video: {
+                showDetailsFragment("视频");
+                break;
+            }
+            case R.id.btn_music: {
+                showDetailsFragment("音乐");
+                break;
+            }
         }
+    }
+
+    /**
+     * 显示Fragment
+     *
+     * @param title
+     */
+    private void showDetailsFragment(String title) {
+//        Fragment detailsFragment = getFragmentManager().findFragmentByTag("DetailsFragment");
+//        Log.d(TAG, "showDetailsFragment:: detailsFragment = " + detailsFragment);
+//        if (detailsFragment != null && detailsFragment instanceof DetailsFragment) {
+//            Log.d(TAG, "showDetailsFragment:: 更新detailsFragment内容");
+//            ((DetailsFragment) detailsFragment).update(title);
+//        } else {
+//            Bundle bundle = new Bundle();
+//            bundle.putString("title", title);
+//            //NoFragment fragment = fragment(DetailsFragment.class, bundle);
+//            detailsFragment = new DetailsFragment();
+//            detailsFragment.setArguments(bundle);
+//
+//            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//            transaction.replace(R.id.fl_details, detailsFragment, "DetailsFragment");
+//            transaction.commit();
+//        }
+
+        //加载一个内部fragment
+        startFragment(DetailsFragment.class, R.id.fl_details, title);
+
     }
 
     @Override

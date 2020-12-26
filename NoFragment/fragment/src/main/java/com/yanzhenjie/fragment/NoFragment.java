@@ -25,9 +25,11 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.view.SupportMenuInflater;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -35,7 +37,7 @@ import android.view.View;
  * Created by Yan Zhenjie on 2017/1/13.
  */
 public class NoFragment extends Fragment {
-
+    protected String TAG = this.getClass().getSimpleName();
     public static final int RESULT_OK = Activity.RESULT_OK;
     public static final int RESULT_CANCELED = Activity.RESULT_CANCELED;
 
@@ -418,4 +420,50 @@ public class NoFragment extends Fragment {
         mActivity.startFragment(this, targetFragment, stickyStack, requestCode);
     }
 
+    /**
+     * Show a fragment.
+     *
+     * @param targetClazz fragment to display.
+     * @param args        args
+     * @param targetId    targetId.
+     * @param <T>         {@link NoFragment}.
+     */
+    public <T extends NoFragment> void startFragment(Class<T> targetClazz, int targetId, String args) {
+        NoFragment fragment = fragment(targetClazz);
+        String tag = fragment.getClass().getSimpleName();
+        Log.d(TAG, "startFragment:: tag:" + tag);
+        Fragment targetFragment = getFragmentManager().findFragmentByTag(tag);
+        Log.d(TAG, "startFragment:: targetFragment:" + targetFragment);
+        if (targetFragment != null && targetFragment instanceof NoFragment) {
+            Bundle bundle = targetFragment.getArguments();
+            Log.d(TAG, "startFragment: bundle:" + bundle);
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putSerializable("args", args);
+            ((NoFragment) targetFragment).update(bundle);
+        } else {
+            targetFragment = fragment;
+            Bundle bundle = targetFragment.getArguments();
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putSerializable("args", args);
+            targetFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(targetId, targetFragment, tag);
+            transaction.commit();
+        }
+
+    }
+
+    /**
+     * 更新Fragment
+     *
+     * @param bundle 传递参数
+     */
+    protected void update(Bundle bundle) {
+
+    }
 }

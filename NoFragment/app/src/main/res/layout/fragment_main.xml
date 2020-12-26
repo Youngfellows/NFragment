@@ -1,10 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <Button
+            android:id="@+id/btn_menu_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_menu_more" />
+
+        <Button
+            android:id="@+id/btn_argument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_argument" />
+
+        <Button
+            android:id="@+id/btn_for_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_for_result"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_stack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_stack" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/btn_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新闻" />
+
+                <Button
+                    android:id="@+id/btn_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="天气" />
+
+                <Button
+                    android:id="@+id/btn_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="视频" />
+
+                <Button
+                    android:id="@+id/btn_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="音乐" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_weight="4"
+                android:id="@+id/fl_details"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar_layout"
@@ -17,41 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <Button
-            android:id="@+id/btn_menu_more"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_menu_more"/>
-
-        <Button
-            android:id="@+id/btn_argument"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_argument"/>
-
-        <Button
-            android:id="@+id/btn_for_result"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_for_result"
-            android:textAllCaps="false"/>
-
-        <Button
-            android:id="@+id/btn_stack"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_stack"/>
-
-    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
