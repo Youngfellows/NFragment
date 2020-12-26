@@ -15,6 +15,7 @@
  */
 package com.yanzhenjie.fragment.sample.fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -206,5 +207,18 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
         // Intercept close button click event.
         Snackbar.make(mToolbar, R.string.intercept_close, Snackbar.LENGTH_SHORT).show();
         return true;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            startFragment(DetailsFragment.class, R.id.fl_details, "横屏");
+            Log.d(TAG, "onConfigurationChanged:: 横屏");
+        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            startFragment(DetailsFragment.class, R.id.fl_details, "竖屏");
+            Log.d(TAG, "onConfigurationChanged:: 竖屏");
+        }
     }
 }
