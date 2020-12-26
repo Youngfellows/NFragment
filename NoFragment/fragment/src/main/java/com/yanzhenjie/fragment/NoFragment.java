@@ -431,7 +431,7 @@ public class NoFragment extends Fragment {
     public <T extends NoFragment> void startFragment(Class<T> targetClazz, int targetId, String args) {
         try {
             NoFragment targetFragment = targetClazz.newInstance();
-            mActivity.startFragment(this, targetFragment, targetId, args);
+            mActivity.startFragment(targetFragment, targetId, args);
         } catch (Exception e) {
             e.printStackTrace();
         }

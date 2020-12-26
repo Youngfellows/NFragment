@@ -226,13 +226,12 @@ public abstract class CompatActivity extends AppCompatActivity {
     /**
      * Show a fragment.
      *
-     * @param thisFragment Now show fragment, can be null.
      * @param thatFragment fragment to display.
      * @param targetId     sticky back stack.
      * @param args         requestCode.
      * @param <T>          {@link NoFragment}.
      */
-    protected final <T extends NoFragment> void startFragment(T thisFragment, T thatFragment, int targetId, String args) {
+    protected final <T extends NoFragment> void startFragment(T thatFragment, int targetId, String args) {
         //NoFragment fragment = fragment(targetClazz);
         String tag = thatFragment.getClass().getSimpleName();
         Log.d(TAG, "startFragment:: tag:" + tag);
