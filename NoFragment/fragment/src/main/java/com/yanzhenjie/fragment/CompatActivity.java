@@ -23,6 +23,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +36,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by Yan Zhenjie on 2017/1/13.
  */
 public abstract class CompatActivity extends AppCompatActivity {
-
+    private String TAG = this.getClass().getSimpleName();
     public static final int REQUEST_CODE_INVALID = -1;
 
     private FragmentManager mFManager;
@@ -220,6 +221,46 @@ public abstract class CompatActivity extends AppCompatActivity {
         mFragmentEntityMap.put(thatFragment, fragmentStackEntity);
 
         mFragmentStack.add(thatFragment);
+    }
+
+    /**
+     * Show a fragment.
+     *
+     * @param thisFragment Now show fragment, can be null.
+     * @param thatFragment fragment to display.
+     * @param targetId     sticky back stack.
+     * @param args         requestCode.
+     * @param <T>          {@link NoFragment}.
+     */
+    protected final <T extends NoFragment> void startFragment(T thisFragment, T thatFragment, int targetId, String args) {
+        //NoFragment fragment = fragment(targetClazz);
+        String tag = thatFragment.getClass().getSimpleName();
+        Log.d(TAG, "startFragment:: tag:" + tag);
+        Fragment targetFragment = getSupportFragmentManager().findFragmentByTag(tag);
+        Log.d(TAG, "startFragment:: targetFragment:" + targetFragment);
+        if (targetFragment != null && targetFragment instanceof NoFragment) {
+            Bundle bundle = targetFragment.getArguments();
+            Log.i(TAG, "startFragment: bundle:" + bundle);
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putSerializable("args", args);
+            ((NoFragment) targetFragment).update(bundle);
+        } else {
+            Log.d(TAG, "startFragment:: xxxxxx");
+            targetFragment = thatFragment;
+            Bundle bundle = targetFragment.getArguments();
+            if (bundle == null) {
+                bundle = new Bundle();
+            }
+            bundle.putSerializable("args", args);
+            targetFragment.setArguments(bundle);
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(targetId, targetFragment, tag);
+            transaction.commit();
+        }
+
     }
 
     /**

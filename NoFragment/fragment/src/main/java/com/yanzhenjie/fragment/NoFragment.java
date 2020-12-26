@@ -429,33 +429,12 @@ public class NoFragment extends Fragment {
      * @param <T>         {@link NoFragment}.
      */
     public <T extends NoFragment> void startFragment(Class<T> targetClazz, int targetId, String args) {
-        NoFragment fragment = fragment(targetClazz);
-        String tag = fragment.getClass().getSimpleName();
-        Log.d(TAG, "startFragment:: tag:" + tag);
-        Fragment targetFragment = getFragmentManager().findFragmentByTag(tag);
-        Log.d(TAG, "startFragment:: targetFragment:" + targetFragment);
-        if (targetFragment != null && targetFragment instanceof NoFragment) {
-            Bundle bundle = targetFragment.getArguments();
-            Log.d(TAG, "startFragment: bundle:" + bundle);
-            if (bundle == null) {
-                bundle = new Bundle();
-            }
-            bundle.putSerializable("args", args);
-            ((NoFragment) targetFragment).update(bundle);
-        } else {
-            targetFragment = fragment;
-            Bundle bundle = targetFragment.getArguments();
-            if (bundle == null) {
-                bundle = new Bundle();
-            }
-            bundle.putSerializable("args", args);
-            targetFragment.setArguments(bundle);
-
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(targetId, targetFragment, tag);
-            transaction.commit();
+        try {
+            NoFragment targetFragment = targetClazz.newInstance();
+            mActivity.startFragment(this, targetFragment, targetId, args);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
     /**
