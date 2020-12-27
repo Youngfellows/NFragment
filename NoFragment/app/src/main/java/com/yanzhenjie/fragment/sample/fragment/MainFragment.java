@@ -220,10 +220,10 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
         super.onConfigurationChanged(newConfig);
 
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            startFragment(DetailsFragment.class, R.id.fl_details, "横屏");
+            showDetailsFragment("横屏");
             Log.d(TAG, "onConfigurationChanged:: 横屏");
         } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            startFragment(DetailsFragment.class, R.id.fl_details, "竖屏");
+            showDetailsFragment("竖屏");
             Log.d(TAG, "onConfigurationChanged:: 竖屏");
         }
     }
