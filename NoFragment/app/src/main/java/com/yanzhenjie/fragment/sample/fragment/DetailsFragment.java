@@ -27,11 +27,17 @@ public class DetailsFragment extends NoFragment {
         Log.d(TAG, "onAttach:: mTitleText:" + mTitleText);
     }
 
-    @Nullable
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        //return super.onCreateView(inflater, container, savedInstanceState);
+//        return inflater.inflate(R.layout.fragment_details, container, false);
+//    }
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return super.onCreateView(inflater, container, savedInstanceState);
-        return inflater.inflate(R.layout.fragment_details, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_details;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class DetailsFragment extends NoFragment {
         update(mTitleText);
     }
 
-    public void update(Bundle bundle) {
+    public void refreshFragment(Bundle bundle) {
         mTitleText = (String) bundle.getSerializable("args");
         update(mTitleText);
     }

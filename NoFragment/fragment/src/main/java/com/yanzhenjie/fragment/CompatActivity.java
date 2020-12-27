@@ -239,14 +239,14 @@ public abstract class CompatActivity extends AppCompatActivity {
         Log.d(TAG, "startFragment:: targetFragment:" + targetFragment);
         if (targetFragment != null && targetFragment instanceof NoFragment) {
             Bundle bundle = targetFragment.getArguments();
-            Log.i(TAG, "startFragment: bundle:" + bundle);
+            Log.i(TAG, "startFragment: old bundle:" + bundle);
             if (bundle == null) {
                 bundle = new Bundle();
             }
             bundle.putSerializable("args", args);
-            ((NoFragment) targetFragment).update(bundle);
+            Log.i(TAG, "startFragment: new bundle:" + bundle);
+            ((NoFragment) targetFragment).refreshFragment(bundle);
         } else {
-            Log.d(TAG, "startFragment:: xxxxxx");
             targetFragment = thatFragment;
             Bundle bundle = targetFragment.getArguments();
             if (bundle == null) {

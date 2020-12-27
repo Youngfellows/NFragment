@@ -34,11 +34,16 @@ public class StackNewFragment extends NoFragment {
     private Toolbar mToolbar;
     private Button mBtnBack;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_stack_new, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_stack_new;
     }
+
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.fragment_stack_new, container, false);
+//    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

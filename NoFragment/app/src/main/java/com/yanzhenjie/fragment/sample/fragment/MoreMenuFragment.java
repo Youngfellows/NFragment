@@ -41,11 +41,16 @@ public class MoreMenuFragment extends NoFragment {
     private Toolbar mToolbar;
     private RecyclerView mRecyclerView;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_menu;
     }
+
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.fragment_menu, container, false);
+//    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

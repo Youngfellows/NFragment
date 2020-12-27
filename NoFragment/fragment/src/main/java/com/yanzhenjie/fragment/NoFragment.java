@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,18 +31,44 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.view.SupportMenuInflater;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * Created by Yan Zhenjie on 2017/1/13.
  */
-public class NoFragment extends Fragment {
+public abstract class NoFragment extends Fragment {
     protected String TAG = this.getClass().getSimpleName();
     public static final int RESULT_OK = Activity.RESULT_OK;
     public static final int RESULT_CANCELED = Activity.RESULT_CANCELED;
 
     private static final int REQUEST_CODE_INVALID = CompatActivity.REQUEST_CODE_INVALID;
+
+    /**
+     * 布局的资源id
+     *
+     * @return
+     */
+    @LayoutRes
+    protected abstract int getLayoutId();
+
+    /**
+     * 向一个已经显示的Fragment传递数据,更新页面,子类选择覆写
+     *
+     * @param bundle 传递数据
+     */
+    protected void refreshFragment(Bundle bundle) {
+
+    }
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(getLayoutId(), container, false);
+    }
 
     /**
      * Create a new instance of a Fragment with the given class name.  This is the same as calling its empty constructor.
@@ -437,12 +464,5 @@ public class NoFragment extends Fragment {
         }
     }
 
-    /**
-     * 更新Fragment
-     *
-     * @param bundle 传递参数
-     */
-    protected void update(Bundle bundle) {
 
-    }
 }

@@ -37,11 +37,16 @@ public class StartResultFragment extends NoFragment {
     private EditText mEditText;
     private Button mBtnBack;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_result, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_result;
     }
+
+    //    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.fragment_result, container, false);
+//    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

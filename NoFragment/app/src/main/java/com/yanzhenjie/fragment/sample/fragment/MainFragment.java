@@ -42,10 +42,16 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
     private Toolbar mToolbar;
     private FrameLayout mDetailsLayout;
 
-    @Nullable
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.fragment_main, container, false);
+//    }
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_main;
     }
 
     @Override

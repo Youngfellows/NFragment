@@ -34,10 +34,16 @@ public class ArgumentFragment extends NoFragment {
     private Toolbar mToolbar;
     private TextView mTvMessage;
 
-    @Nullable
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        return inflater.inflate(R.layout.fragment_argument, container, false);
+//    }
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_argument, container, false);
+    protected int getLayoutId() {
+        return R.layout.fragment_argument;
     }
 
     @Override
