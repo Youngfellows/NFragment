@@ -38,7 +38,7 @@ import com.yanzhenjie.fragment.sample.R;
 /**
  * Created by Yan Zhenjie on 2017/1/15.
  */
-public class MainFragment extends NoFragment implements View.OnClickListener {
+public class MainFragment extends NoFragment implements View.OnClickListener, ListMenuFragment.Callback {
     private Toolbar mToolbar;
     private FrameLayout mDetailsLayout;
 
@@ -57,7 +57,8 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        mDetailsLayout = view.findViewById(R.id.fl_details);
+//        mDetailsLayout = view.findViewById(R.id.fl_details);
+//        mDetailsLayout = view.findViewById(R.id.fl_menus);
         view.findViewById(R.id.btn_menu_more).setOnClickListener(this);
         view.findViewById(R.id.btn_argument).setOnClickListener(this);
         view.findViewById(R.id.btn_for_result).setOnClickListener(this);
@@ -80,6 +81,13 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
 
         // Display close button.
         displayHomeAsUpEnabled(R.drawable.ic_close_white);
+
+        initView();
+    }
+
+    private void initView() {
+        startFragment(ListMenuFragment.class, R.id.fl_menus, "");
+        ListMenuFragment.setCallback(this);
     }
 
     @Override
@@ -136,7 +144,7 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
      *
      * @param title
      */
-    private void showDetailsFragment(String title) {
+    public void showDetailsFragment(String title) {
 //        Fragment detailsFragment = getFragmentManager().findFragmentByTag("DetailsFragment");
 //        Log.d(TAG, "showDetailsFragment:: detailsFragment = " + detailsFragment);
 //        if (detailsFragment != null && detailsFragment instanceof DetailsFragment) {
@@ -226,5 +234,10 @@ public class MainFragment extends NoFragment implements View.OnClickListener {
             showDetailsFragment("竖屏");
             Log.d(TAG, "onConfigurationChanged:: 竖屏");
         }
+    }
+
+    @Override
+    public void onCallback(String string) {
+        showDetailsFragment(string);
     }
 }
