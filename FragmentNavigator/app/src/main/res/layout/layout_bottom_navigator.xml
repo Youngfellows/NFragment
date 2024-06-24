@@ -10,11 +10,11 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:nextFocusRight="@id/ll_contacts"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
+        android:nextFocusRight="@id/ll_contacts"
         android:orientation="vertical">
 
         <ImageView
@@ -36,12 +36,12 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:nextFocusRight="@id/ll_circle"
-        android:nextFocusLeft="@id/ll_chats"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
+        android:nextFocusLeft="@id/ll_chats"
+        android:nextFocusRight="@id/ll_circle"
         android:orientation="vertical">
 
         <ImageView
@@ -63,12 +63,12 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:nextFocusRight="@id/ll_me"
-        android:nextFocusLeft="@id/ll_contacts"
-        android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
+        android:nextFocusLeft="@id/ll_contacts"
+        android:nextFocusRight="@id/ll_setting"
         android:orientation="vertical">
 
         <ImageView
@@ -86,15 +86,16 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_me"
+        android:id="@+id/ll_setting"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:nextFocusLeft="@id/ll_circle"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:gravity="center"
+        android:nextFocusLeft="@id/ll_circle"
+        android:nextFocusUp="@id/tv_frends"
         android:orientation="vertical">
 
         <ImageView
@@ -106,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="Me"
+            android:text="Setting"
             android:textColor="@color/color_tab_text"
             android:textSize="12sp" />
     </LinearLayout>

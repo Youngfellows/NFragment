@@ -39,7 +39,19 @@ public class TabLayout extends LinearLayout {
             view.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnTabItemClickListener.onTabItemClick(finalI, v);
+                    if (mOnTabItemClickListener != null) {
+                        mOnTabItemClickListener.onTabItemClick(finalI, v);
+                    }
+                }
+            });
+            view.setOnFocusChangeListener(new OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        if (mOnTabItemClickListener != null) {
+                            mOnTabItemClickListener.onTabItemClick(finalI, v);
+                        }
+                    }
                 }
             });
         }
