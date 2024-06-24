@@ -6,9 +6,13 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/ll_chats"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:nextFocusRight="@id/ll_contacts"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:orientation="vertical">
@@ -28,9 +32,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_contacts"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:nextFocusRight="@id/ll_circle"
+        android:nextFocusLeft="@id/ll_chats"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:orientation="vertical">
@@ -50,9 +59,14 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_circle"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:nextFocusRight="@id/ll_me"
+        android:nextFocusLeft="@id/ll_contacts"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:orientation="vertical">
@@ -72,8 +86,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_me"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:nextFocusLeft="@id/ll_circle"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"

@@ -49,6 +49,15 @@ public class BottomNavigatorView extends LinearLayoutCompat {
                     mOnBottomNavigatorViewItemClickListener.onBottomNavigatorViewItemClick(finalI, v);
                 }
             });
+            view.setOnFocusChangeListener(new OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    Log.d(TAG, "onFocusChange: hasFocus:" + hasFocus + ",v:" + v);
+                    if (hasFocus) {
+                        mOnBottomNavigatorViewItemClickListener.onBottomNavigatorViewItemClick(finalI, v);
+                    }
+                }
+            });
         }
     }
 
